@@ -6,8 +6,7 @@
 <meta charset="UTF-8">
 <title>LeanersAcademyLogin</title>
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="*">
-<%-- <jsp:include page="../../cssLoader.jsp"></jsp:include> --%>
-<link href="<c:url value="../resources/css/index.css" />" rel="stylesheet">
+<jsp:include page="cssLoader.jsp"></jsp:include>
 </head>
 <body style="background:url(/images/bg3.jpeg)">
  <div class="container col-md-8 col-md-offset-3" style="overflow: auto;width:50%;margin:10% auto auto auto;border:1px solid #5e5e5e;padding:30px;border-radius:10px;">

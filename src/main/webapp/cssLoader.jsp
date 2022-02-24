@@ -1,1 +1,1 @@
-<link rel="stylesheet" href="resources/css/index.css"/>
+<link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css"/>

@@ -8,6 +8,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+
 import java.io.IOException;
 import java.io.PrintWriter;
 
@@ -34,17 +36,9 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		String un = request.getParameter("username");
-		String pw = request.getParameter("password");
-		
-		if(userServiceImpl.validate(un, pw)) {
-			response.sendRedirect("class-room.jsp");
-		}
-		request.setAttribute("message", "Invalid Username or Password");
 		RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
 		rd.forward(request, response);
-		response.sendRedirect("index.jsp?message=Invalid Username or Password");
+
 	}
 
 	/**
@@ -52,7 +46,23 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		doGet(request, response);
+		// TODO Auto-generated method stub
+		String un = request.getParameter("username");
+		String pw = request.getParameter("password");
+		
+		if(!userServiceImpl.validate(un, pw)) {
+			request.setAttribute("message", "Invalid Username or Password");
+			RequestDispatcher rd=request.getRequestDispatcher("/index.jsp");
+			rd.forward(request, response);
+			
+		}else {
+			 HttpSession session=request.getSession();  
+		     session.setAttribute("un",un); 
+			 response.sendRedirect("class-room.jsp");
+		}
+		
+		
+		
 	}
 
 }

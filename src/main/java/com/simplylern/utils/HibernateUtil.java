@@ -22,38 +22,36 @@ public class HibernateUtil {
     private static SessionFactory sessionFactory;
 
     public static SessionFactory getSessionFactory() {
-        if (sessionFactory == null) {
-            try {
-                Configuration configuration = new Configuration();
-
-                //Hibernate settings equivalent to hibernate.cfg.xml's properties
-                Properties settings = new Properties();
-                settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-                settings.put(Environment.URL, "jdbc:mysql://localhost:3306/learners_academy_db?useSSL=false");
-                settings.put(Environment.USER, "root");
-                settings.put(Environment.PASS, "p@55w0rd");
-                settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
-
-                settings.put(Environment.SHOW_SQL, "true");
-
-                settings.put(Environment.CURRENT_SESSION_CONTEXT_CLASS, "thread");
-
-                settings.put(Environment.HBM2DDL_AUTO, "update");
-
-                configuration.setProperties(settings);
-                configuration.addAnnotatedClass(User.class);
-
-                ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
-                    .applySettings(configuration.getProperties()).build();
-                System.out.println("Hibernate Java Config serviceRegistry created");
-                sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-                return sessionFactory;
-
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return sessionFactory;
+        
+    		
+    		if(sessionFactory ==  null) {
+    			try {
+    				Configuration configuration = new Configuration();
+    				
+    				Properties hibernateProperties = new Properties();
+    				hibernateProperties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
+    				hibernateProperties.put(Environment.URL, "jdbc:mysql://localhost:3306/learners_academy_db?useSSL=false");
+    				hibernateProperties.put(Environment.USER, "root");
+    				hibernateProperties.put(Environment.PASS, "p@55w0rd");
+    				hibernateProperties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5InnoDBDialect");
+    				hibernateProperties.put(Environment.SHOW_SQL, "true");
+    				hibernateProperties.put(Environment.FORMAT_SQL, "true");
+    				hibernateProperties.put(Environment.HBM2DDL_AUTO, "update");
+    				configuration.setProperties(hibernateProperties);
+    				
+    				configuration.addAnnotatedClass(User.class);
+    				//configuration.addAnnotatedClass(ClassRoom.class);
+    				
+    				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
+    						.applySettings(configuration.getProperties()).build();
+    				
+    				sessionFactory = configuration.buildSessionFactory(serviceRegistry);
+    			}
+    			catch (Exception e) {
+    				e.printStackTrace();
+    			}
+    		}
+    		return sessionFactory;
+    
     }
 }
