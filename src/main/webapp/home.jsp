@@ -21,46 +21,16 @@
 	<main class="container">
     <nav class="breadcrumbs">
       <ul>
-        <li class="first-crumb"><a href="/">Home</a></li>
-     <!--    <li><a href="#">Personal Work</a></li> -->
-        <li class="last-crumb"><%=request.getParameter("title") %></li>
+        <li class="last-crumb">Home</li>
       </ul>
     </nav>
     <section class="content">
       <header>
-        <h3>Title</h3>
+  
       </header>
-      <p>
-        <table class="table table-bordered border-primary">
-	  <thead>
-	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">First</th>
-	      <th scope="col">Last</th>
-	      <th scope="col">Handle</th>
-	    </tr>
-	  </thead>
-	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>Jacob</td>
-	      <td>Thornton</td>
-	      <td>@fat</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td colspan="2">Larry the Bird</td>
-	      <td>@twitter</td>
-	    </tr>
-	  </tbody>
-	</table>
-      </p>
+      <h1>
+        <%=request.getParameter("message")%>
+      </h1>
     </section>
    </main>
 
