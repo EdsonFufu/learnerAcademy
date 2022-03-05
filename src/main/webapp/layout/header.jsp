@@ -42,18 +42,20 @@
 	      </button>
 	      <div class="collapse navbar-collapse" id="ftco-nav">
 	        <ul class="navbar-nav m-auto">
-	        	<li class="nav-item active"><a href="#" class="nav-link">Home</a></li>
-	        	<li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
-              <div class="dropdown-menu" aria-labelledby="dropdown04">
-              	<a class="dropdown-item" href="#">Page 1</a>
-                <a class="dropdown-item" href="#">Page 2</a>
-                <a class="dropdown-item" href="#">Page 3</a>
-                <a class="dropdown-item" href="#">Page 4</a>
-              </div>
-            </li>
-	        	<li class="nav-item"><a href="#" class="nav-link">Catalog</a></li>
-	        	<li class="nav-item"><a href="#" class="nav-link">Blog</a></li>
+	        	<li class="nav-item active"><a href="<%=request.getContextPath()%>/" class="nav-link">Home</a></li>
+	        	<!-- <li class="nav-item dropdown">
+              	<a class="nav-link dropdown-toggle" href="#" id="dropdown04" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Page</a>
+	              <div class="dropdown-menu" aria-labelledby="dropdown04">
+	              	<a class="dropdown-item" href="#">Page 1</a>
+	                <a class="dropdown-item" href="#">Page 2</a>
+	                <a class="dropdown-item" href="#">Page 3</a>
+	                <a class="dropdown-item" href="#">Page 4</a>
+	              </div>
+	            </li> -->
+	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/class-room" class="nav-link">ClassRoom</a></li>
+	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/student" class="nav-link">Students</a></li>
+	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/teacher" class="nav-link">Teachers</a></li>
+	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/user" class="nav-link">Users</a></li>
 	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
 	        </ul>
 	      </div>

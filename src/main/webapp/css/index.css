@@ -1,7 +1,15 @@
+@charset "UTF-8";
 .error{
 	color:rgba(100,0,0,0.5)
 }
 
+.mb-3{
+	width:200px;
+}
+
+.btn-action{
+	cursor:pointer;
+}
 	
 	footer {
 	  background: #16222A;
@@ -50,6 +58,9 @@
 	main {
 	  position: relative;
 	  width: 75%;
+	}
+	main.container{
+		margin-bottom:200px;
 	}
 	
 	.breadcrumbs {
@@ -403,4 +414,4 @@ h1, h2, h3, h4, h5,
 
 .form-control :focus, .form-control :active {
 		border-color: #000000;
-	}
+	} 

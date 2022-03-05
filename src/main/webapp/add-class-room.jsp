@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,16 +21,26 @@
 	<main class="container">
     <nav class="breadcrumbs">
       <ul>
-        <li class="last-crumb">Home</li>
+        <li class="first-crumb"><a href="/">Home</a></li>
+     <!--    <li><a href="#">Personal Work</a></li> -->
+        <li class="last-crumb"><%=request.getParameter("title") %></li>
       </ul>
     </nav>
     <section class="content">
       <header>
-  
+        <h3><%=request.getParameter("title") %></h3>
       </header>
-      <h1>
-        <%=request.getParameter("message")%>
-      </h1>
+       <form style="" action="<%=request.getContextPath()%>/class-room" method="post">
+	  <div class="mb-3">
+	    <label for="exampleInputEmail1" class="form-label">Class Name</label>
+	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
+	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" required>
+	     <div id="emailHelp" class="form-text error"></div>
+	  </div>
+	 
+
+	  <button type="submit" class="btn btn-primary">Add Class Room</button>
+	</form>
     </section>
    </main>
 

@@ -11,6 +11,7 @@ import org.hibernate.cfg.Configuration;
 import org.hibernate.cfg.Environment;
 import org.hibernate.service.ServiceRegistry;
 
+import com.simplylern.model.ClassRoom;
 import com.simplylern.model.User;
 
 
@@ -40,7 +41,7 @@ public class HibernateUtil {
     				configuration.setProperties(hibernateProperties);
     				
     				configuration.addAnnotatedClass(User.class);
-    				//configuration.addAnnotatedClass(ClassRoom.class);
+    				configuration.addAnnotatedClass(ClassRoom.class);
     				
     				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
     						.applySettings(configuration.getProperties()).build();

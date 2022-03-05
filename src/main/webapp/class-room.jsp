@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.simplylern.model.ClassRoom"%>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -9,13 +10,12 @@
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" />
-    <jsp:include page="cssLoader.jsp"></jsp:include>
+    <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/css/index.css"/>
 	
 
 </head>
 </head>
 <body>
-<div class="">
      <jsp:include page="layout/header.jsp"></jsp:include>
 
 	<main class="container">
@@ -28,43 +28,29 @@
     </nav>
     <section class="content">
       <header>
-        <h3>Title</h3>
+        <h3><%=request.getParameter("title") %></h3>
       </header>
-      <p>
         <table class="table table-bordered border-primary">
 	  <thead>
 	    <tr>
-	      <th scope="col">#</th>
-	      <th scope="col">First</th>
-	      <th scope="col">Last</th>
-	      <th scope="col">Handle</th>
+	      <th scope="col">ID</th>
+	      <th scope="col">NAME</th>
+	      <th scope="col">Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-	    <tr>
-	      <th scope="row">1</th>
-	      <td>Mark</td>
-	      <td>Otto</td>
-	      <td>@mdo</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">2</th>
-	      <td>Jacob</td>
-	      <td>Thornton</td>
-	      <td>@fat</td>
-	    </tr>
-	    <tr>
-	      <th scope="row">3</th>
-	      <td colspan="2">Larry the Bird</td>
-	      <td>@twitter</td>
-	    </tr>
+		<% for(ClassRoom cr:(ArrayList<ClassRoom>)request.getAttribute("data")){ %>
+            <tr>
+                <td><%=cr.getId()%></td>
+                <td><%=cr.getName()%></td>
+                <td><i class="fa fa-check btn-action" title="Edit"></i> | <i class="fa fa-trash btn-action" title="Delete"></i></td>
+            </tr>
+         <%}%>
 	  </tbody>
 	</table>
-      </p>
     </section>
    </main>
 
-</div>
 
 <jsp:include page="layout/footer.jsp"></jsp:include>
 <jsp:include page="cssLoaderFooter.jsp"></jsp:include>

@@ -34,9 +34,9 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher rd=request.getRequestDispatcher("/home.jsp");
 		request.setAttribute("message", "Welcome Learners Academy");
-		rd.forward(request, response);
+		request.setAttribute("title", "Welcome Learners Academy");
+		request.getRequestDispatcher("/home").forward(request, response);
 	}
 
 	/**
