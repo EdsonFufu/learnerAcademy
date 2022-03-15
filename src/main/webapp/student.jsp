@@ -1,5 +1,5 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="com.simplylern.model.ClassRoom"%>
+<%@page import="com.simplylern.model.Student"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -23,30 +23,32 @@
       <ul>
         <li class="first-crumb"><a href="<%=request.getContextPath()%>/">Home</a></li>
      <!--    <li><a href="#">Personal Work</a></li> -->
-        <li class="last-crumb"><%="ClassRoom" %></li>
+        <li class="last-crumb"><%="Students" %></li>
       </ul>
     </nav>
     <section class="content">
       <header>
         <h3><%="Classes" %></h3>
-        <form action="<%=request.getContextPath()%>/class-room?action=add" method="post">
-        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Class</button>
+        <form action="<%=request.getContextPath()%>/student?action=add" method="post">
+        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Student</button>
         </form>
       </header>
         <table class="table table-bordered border-primary">
 	  <thead>
 	    <tr>
 	      <th scope="col">ID</th>
+	      <th scope="col">STUDENT_ID</th>
 	      <th scope="col">NAME</th>
 	      <th scope="col">Action</th>
 	    </tr>
 	  </thead>
 	  <tbody>
-		<% for(ClassRoom cr:(ArrayList<ClassRoom>)request.getAttribute("data")){ %>
+		<% for(Student std:(ArrayList<Student>)request.getAttribute("data")){ %>
             <tr>
-                <td><%=cr.getId()%></td>
-                <td><%=cr.getName()%></td>
-                <td><i class="fa fa-check btn-action" title="Edit"></i> | <i class="fa fa-trash btn-action" title="Delete"></i></td>
+                <td><%=std.getId()%></td>
+                <td><%=std.getStudentId()%></td>
+                <td><%=std.getName()%></td>
+                <td><button class="fa fa-check btn-action" title="Edit"></button> | <i class="fa fa-trash btn-action" title="Delete"></i></td>
             </tr>
          <%}%>
 	  </tbody>

@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LeanersAcademy:ClassRoom</title>
+<title>LeanersAcademy:Student</title>
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'/>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -23,23 +23,29 @@
       <ul>
         <li class="first-crumb"><a href="/">Home</a></li>
      <!--    <li><a href="#">Personal Work</a></li> -->
-        <li class="last-crumb">Add New Class</li>
+        <li class="last-crumb">Add Student</li>
       </ul>
     </nav>
     <section class="content">
       <header>
-        <h3>Add New Class</h3>
+        <h3>Add New Student</h3>
       </header>
-       <form style="" action="<%=request.getContextPath()%>/class-room" method="post">
-	  <div class="mb-3">
-	    <label for="exampleInputEmail1" class="form-label">Class Name</label>
+       <form style="" action="<%=request.getContextPath()%>/student" method="post">
+	  <div class="col-md-12">
 	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
+	     <label for="exampleInputEmail1" class="form-label">Student Id</label>
+	     <input type="text" class="form-control" id="studentId" name = "studentId" aria-describedby="nameHelp" required>
+	     <div id="emailHelp" class="form-text error"></div>
+	  </div>
+	  	  <div class="col-md-12">
+	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
+	     <label for="exampleInputEmail1" class="form-label">Student Name</label>
 	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" required>
 	     <div id="emailHelp" class="form-text error"></div>
 	  </div>
 	 
 
-	  <button type="submit" class="btn btn-primary">Add Class Room</button>
+	  <button type="submit" class="btn btn-primary">Add Student</button>
 	</form>
     </section>
    </main>

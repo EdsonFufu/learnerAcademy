@@ -13,23 +13,23 @@ import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-import com.simplylern.model.ClassRoom;
-import com.simplylern.service.ClassRoomServiceImpl;
+import com.simplylern.model.Student;
+import com.simplylern.service.StudentServiceImpl;
 import com.simplylern.service.UserServiceImpl;
 
 /**
  * Servlet implementation class HomeServlet
  */
-public class ClassRoomServlet extends HttpServlet {
+public class StudentServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	private ClassRoomServiceImpl classRoomServiceImpl = new ClassRoomServiceImpl();
+	private StudentServiceImpl studentServiceImpl = new StudentServiceImpl();
 	RequestDispatcher dispatcher = null;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ClassRoomServlet() {
+    public StudentServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,9 +41,9 @@ public class ClassRoomServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		System.out.println("ServletPath:" + action);
 		if(action != null && action.equals("add")) {
-		        request.getRequestDispatcher("add-class-room.jsp").forward(request, response);
+		        request.getRequestDispatcher("add-student.jsp").forward(request, response);
 		}else {
-			this. listClassRoom( request,  response);
+			this. listStudent( request,  response);
 		}
 		
 	}
@@ -56,20 +56,20 @@ public class ClassRoomServlet extends HttpServlet {
 		String action = request.getParameter("action");
 		//System.out.println("ServletPath:" + action);
 		if(action.equals("add") && request.getParameter("name") != null) {
-			if(classRoomServiceImpl.add(new ClassRoom(request.getParameter("name")))) {
-				this. listClassRoom( request,  response);
+			if(studentServiceImpl.add(new Student(request.getParameter("studentId"),request.getParameter("name")))) {
+				this. listStudent( request,  response);
 			}
 		}else {
-			 request.getRequestDispatcher("add-class-room.jsp").forward(request, response);
+			 request.getRequestDispatcher("add-student.jsp").forward(request, response);
 		}
 		
 	}
 	
-	private void listClassRoom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+	private void listStudent(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
 		request.setAttribute("message", "Welcome Learners Academy");
-		request.setAttribute("data", classRoomServiceImpl.getAll());
-		request.setAttribute("title", "Class Room");
-		request.getRequestDispatcher("class-room.jsp").forward(request, response);
+		request.setAttribute("data", studentServiceImpl.getAll());
+		request.setAttribute("title", "Students");
+		request.getRequestDispatcher("student.jsp").forward(request, response);
 	}
 
 }
