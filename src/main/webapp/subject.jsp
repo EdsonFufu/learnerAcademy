@@ -1,11 +1,11 @@
 <%@page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@page import="com.simplylern.model.ClassRoom"%>
+<%@page import="com.simplylern.model.Subject"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>LeanersAcademy:ClassRoom</title>
+<title>LeanersAcademy:Subject</title>
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'/>
 
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"/>
@@ -23,15 +23,14 @@
       <ul>
         <li class="first-crumb"><a href="<%=request.getContextPath()%>/">Home</a></li>
      <!--    <li><a href="#">Personal Work</a></li> -->
-        <li class="last-crumb"><%="ClassRoom" %></li>
+        <li class="last-crumb"><%="Subject" %></li>
       </ul>
     </nav>
     <section class="content">
       <header>
-        <h3><%="Classes" %></h3>
-        <form action="<%=request.getContextPath()%>/class-room?action=add" method="post">
-      
-        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Class</button>
+        <h3><%="Subjects" %></h3>
+        <form action="<%=request.getContextPath()%>/subject?action=add" method="post">
+        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Subject</button>
         </form>
       </header>
         <table class="table table-bordered border-primary">
@@ -43,11 +42,11 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-		<% for(ClassRoom cr:(ArrayList<ClassRoom>)request.getAttribute("data")){ %>
+		<% for(Subject sub:(ArrayList<Subject>)request.getAttribute("data")){ %>
             <tr>
-                <td><%=cr.getId()%></td>
-                <td><%=cr.getName()%></td>
-                <td><i class="fa fa-check btn-action" title="Edit"></i> | <i class="fa fa-trash btn-action" title="Delete"></i> | <a href="<%=request.getContextPath()%>/class-room?action=assign-subject&&id=<%=cr.getId()%>">Assign Subject</a></td>
+                <td><%=sub.getId()%></td>
+                <td><%=sub.getName()%></td>
+                <td><i class="fa fa-check btn-action" title="Edit"></i> | <i class="fa fa-trash btn-action" title="Delete"></i></td>
             </tr>
          <%}%>
 	  </tbody>

@@ -30,7 +30,7 @@
 		</div>
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
 	    <div class="container">
-	    	<a class="navbar-brand" href="<%=request.getContextPath()%>/home">Learners <span>Academpy</span></a>
+	    	<a class="navbar-brand" href="<%=request.getContextPath()%>/home">Learners <span>Academy</span></a>
 	    	<form action="#" class="searchform order-sm-start order-lg-last">
           <div class="form-group d-flex">
             <input type="text" class="form-control pl-3" placeholder="Search">
@@ -55,8 +55,8 @@
 	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/class-room" class="nav-link">ClassRoom</a></li>
 	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/student" class="nav-link">Students</a></li>
 	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/teacher" class="nav-link">Teachers</a></li>
-	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/user" class="nav-link">Users</a></li>
-	          <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/subject" class="nav-link">Subjects</a></li>
+	       
 	        </ul>
 	      </div>
 	    </div>

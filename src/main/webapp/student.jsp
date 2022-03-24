@@ -30,7 +30,7 @@
       <header>
         <h3><%="Students" %></h3>
         <form action="<%=request.getContextPath()%>/student?action=add" method="post">
-        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Student</button>
+        	<button class="pull-right btn-primary rounded btn-lg"><i class="fa fa-plus"></i> Add New Student</button>
         </form>
       </header>
         <table class="table table-bordered border-primary">
@@ -48,7 +48,11 @@
                 <td><%=std.getId()%></td>
                 <td><%=std.getStudentId()%></td>
                 <td><%=std.getName()%></td>
-                <td><button class="fa fa-check btn-action" title="Edit"></button> | <i class="fa fa-trash btn-action" title="Delete"></i></td>
+                <td>
+                	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/student?action=edit&&id=<%=std.getId()%>"><i class="fa fa-check"></i> Edit</a> 
+                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/student?action=delete&&id=<%=std.getId()%>"><i class="fa fa-trash"></i> Delete</a>
+                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/student?action=assign-class&&id=<%=std.getId()%>"><i class="fa fa-tasks"></i> Assign Class</a>
+                </td>
             </tr>
          <%}%>
 	  </tbody>

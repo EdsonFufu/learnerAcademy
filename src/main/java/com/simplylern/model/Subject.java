@@ -2,34 +2,26 @@ package com.simplylern.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "class_room")
-public class ClassRoom {
+@Table(name = "subject")
+public class Subject {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	int id;
 	@Column
 	private String name;
 
-	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id")
-	Subject subject;
 
-
-	public ClassRoom() {
+	public Subject() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public ClassRoom(String name) {
+	public Subject(String name) {
 		super();
 		this.name = name;
 	}
@@ -47,7 +39,7 @@ public class ClassRoom {
 	}
 	@Override
 	public String toString() {
-		return "ClassRoom [id=" + id + ", name=" + name + "]";
+		return "Subject [id=" + id + ", name=" + name + "]";
 	}
 	
 	

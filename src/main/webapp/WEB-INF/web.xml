@@ -34,6 +34,19 @@
   	<servlet-name>TeacherServlet</servlet-name>
   	<url-pattern>/teacher</url-pattern>
   </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>SubjectServlet</servlet-name>
+  	<display-name>SubjectServlet</display-name>
+  	<description></description>
+  	<servlet-class>com.simplylern.servlet.SubjectServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>SubjectServlet</servlet-name>
+  	<url-pattern>/subject</url-pattern>
+  </servlet-mapping>
+  
+  
     <servlet>
   	<servlet-name>ClassRoomServlet</servlet-name>
   	<display-name>ClassRoomServlet</display-name>
