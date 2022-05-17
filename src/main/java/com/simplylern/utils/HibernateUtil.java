@@ -36,7 +36,7 @@ public class HibernateUtil {
     				hibernateProperties.put(Environment.DRIVER, "com.mysql.cj.jdbc.Driver");
     				hibernateProperties.put(Environment.URL, "jdbc:mysql://localhost:3306/learners_academy_db?useSSL=false");
     				hibernateProperties.put(Environment.USER, "root");
-    				hibernateProperties.put(Environment.PASS, "p@55w0rd");
+    				hibernateProperties.put(Environment.PASS, "P@55w0rd");
     				hibernateProperties.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5InnoDBDialect");
     				hibernateProperties.put(Environment.SHOW_SQL, "true");
     				hibernateProperties.put(Environment.FORMAT_SQL, "true");

@@ -30,7 +30,7 @@
       <header>
         <h3><%="Teachers" %></h3>
         <form action="<%=request.getContextPath()%>/teacher?action=add" method="post">
-        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Teacher</button>
+        	<button class="pull-right btn btn-outline-primary rounded btn-sm p-1 m-1"><i class="fa fa-plus"></i>Add New Teacher</button>
         </form>
       </header>
         <table class="table table-bordered border-primary">
@@ -46,8 +46,10 @@
             <tr>
                 <td><%=teacher.getId()%></td>
                 <td><%=teacher.getName()%></td>
-                <td><i class="fa fa-check btn-action" title="Edit"></i> | <i class="fa fa-trash btn-action" title="Delete"></i></td>
-            </tr>
+                <td>
+                	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/teacher?action=edit&&id=<%=teacher.getId()%>"><i class="fa fa-check"></i> Edit</a> 
+                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/teacher?action=delete&&id=<%=teacher.getId()%>"><i class="fa fa-trash"></i> Delete</a>
+                </td>            </tr>
          <%}%>
 	  </tbody>
 	</table>

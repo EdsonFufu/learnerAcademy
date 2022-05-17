@@ -30,7 +30,7 @@
       <header>
         <h3><%="Students" %></h3>
         <form action="<%=request.getContextPath()%>/student?action=add" method="post">
-        	<button class="pull-right btn-primary rounded btn-lg"><i class="fa fa-plus"></i> Add New Student</button>
+        	<button class="pull-right btn btn-outline-primary rounded btn-sm p-1 m-1"><i class="fa fa-plus"></i> Add New Student</button>
         </form>
       </header>
         <table class="table table-bordered border-primary">

@@ -1,5 +1,4 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,7 +20,7 @@
 	<main class="container">
     <nav class="breadcrumbs">
       <ul>
-        <li class="first-crumb"><a href="/">Home</a></li>
+        <li class="first-crumb"><a href="<%=request.getContextPath()%>/">Home</a></li>
      <!--    <li><a href="#">Personal Work</a></li> -->
         <li class="last-crumb">Add New Subject</li>
       </ul>

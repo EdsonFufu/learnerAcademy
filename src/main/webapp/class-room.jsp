@@ -31,7 +31,7 @@
         <h3><%="Classes" %></h3>
         <form action="<%=request.getContextPath()%>/class-room?action=add" method="post">
       
-        	<button class="pull-right btn-primary"><i class="fa fa-plus"></i>Add New Class</button>
+        	<button class="pull-right btn btn-outline-primary rounded btn-sm p-1 m-1"><i class="fa fa-plus"></i>Add New Class</button>
         </form>
       </header>
         <table class="table table-bordered border-primary">
@@ -47,7 +47,11 @@
             <tr>
                 <td><%=cr.getId()%></td>
                 <td><%=cr.getName()%></td>
-                <td><i class="fa fa-check btn-action" title="Edit"></i> | <i class="fa fa-trash btn-action" title="Delete"></i> | <a href="<%=request.getContextPath()%>/class-room?action=assign-subject&&id=<%=cr.getId()%>">Assign Subject</a></td>
+                <td>
+                	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/class-room?action=edit&&id=<%=cr.getId()%>"><i class="fa fa-check"></i> Edit</a> 
+                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/class-room?action=delete&&id=<%=cr.getId()%>"><i class="fa fa-trash"></i> Delete</a>
+                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/class-room?action=assign-teacher&&id=<%=cr.getId()%>"><i class="fa fa-tasks"></i> Assign Teacher</a>
+                </td>
             </tr>
          <%}%>
 	  </tbody>
