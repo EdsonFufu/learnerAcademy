@@ -1,5 +1,8 @@
 package com.simplylern.model;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -7,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -19,10 +23,13 @@ public class ClassRoom {
 	@Column
 	private String name;
 
+
 	
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name="id")
-	Subject subject;
+
+	
+	@ManyToMany(mappedBy = "classRooms",
+			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	private Set<Teacher> teachers;
 
 
 	public ClassRoom() {
@@ -45,6 +52,15 @@ public class ClassRoom {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	
+	public Set<Teacher> getTeachers() {
+		return teachers;
+	}
+	public void setTeachers(Set<Teacher> teachers) {
+		this.teachers = teachers;
+	}
+	
 	@Override
 	public String toString() {
 		return "ClassRoom [id=" + id + ", name=" + name + "]";

@@ -47,9 +47,9 @@
                 <td><%=sub.getId()%></td>
                 <td><%=sub.getName()%></td>
                  <td>
-                	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/teacher?action=edit&&id=<%=sub.getId()%>"><i class="fa fa-check"></i> Edit</a> 
-                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/teacher?action=delete&&id=<%=sub.getId()%>"><i class="fa fa-trash"></i> Delete</a>
-                </td>            </tr>
+                	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/subject?action=edit&&id=<%=sub.getId()%>"><i class="fa fa-check"></i> Edit</a> 
+                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/subject?action=delete&&id=<%=sub.getId()%>"><i class="fa fa-trash"></i> Delete</a>
+                </td>            
             </tr>
          <%}%>
 	  </tbody>

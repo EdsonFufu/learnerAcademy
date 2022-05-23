@@ -23,17 +23,25 @@
       <ul>
         <li class="first-crumb"><a href="<%=request.getContextPath()%>/">Home</a></li>
      <!--    <li><a href="#">Personal Work</a></li> -->
-        <li class="last-crumb"><%="ClassRoom" %></li>
+        <li class="last-crumb"><%=request.getAttribute("title") %></li>
       </ul>
     </nav>
     <section class="content">
+      <div class="row">
+        <% if(request.getAttribute("message") != null){ %>
+	        <div class="alert alert-info alert-dismissible fade show" role="alert">
+			  <strong></strong><%=request.getAttribute("message")%>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		 <% } %>
+      </div>
       <header>
         <h3><%="Classes" %></h3>
         <form action="<%=request.getContextPath()%>/class-room?action=add" method="post">
-      
         	<button class="pull-right btn btn-outline-primary rounded btn-sm p-1 m-1"><i class="fa fa-plus"></i>Add New Class</button>
         </form>
       </header>
+      
         <table class="table table-bordered border-primary">
 	  <thead>
 	    <tr>
@@ -49,8 +57,8 @@
                 <td><%=cr.getName()%></td>
                 <td>
                 	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/class-room?action=edit&&id=<%=cr.getId()%>"><i class="fa fa-check"></i> Edit</a> 
-                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/class-room?action=delete&&id=<%=cr.getId()%>"><i class="fa fa-trash"></i> Delete</a>
-                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/class-room?action=assign-teacher&&id=<%=cr.getId()%>"><i class="fa fa-tasks"></i> Assign Teacher</a>
+                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/class-room?action=delete&&id=<%=cr.getId()%>""><i class="fa fa-trash"></i> Delete</a>
+                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/class-room?action=assign-teacher"><i class="fa fa-tasks"></i> Assign Teacher</a>
                 </td>
             </tr>
          <%}%>

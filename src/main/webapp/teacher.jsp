@@ -49,7 +49,8 @@
                 <td>
                 	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/teacher?action=edit&&id=<%=teacher.getId()%>"><i class="fa fa-check"></i> Edit</a> 
                 	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/teacher?action=delete&&id=<%=teacher.getId()%>"><i class="fa fa-trash"></i> Delete</a>
-                </td>            </tr>
+                </td>            
+             </tr>
          <%}%>
 	  </tbody>
 	</table>

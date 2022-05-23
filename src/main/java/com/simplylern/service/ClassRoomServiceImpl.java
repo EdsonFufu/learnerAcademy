@@ -15,7 +15,7 @@ public class ClassRoomServiceImpl{
 		super();
 		this.session = HibernateUtil.getSessionFactory().openSession();
 	}
-	public boolean add(ClassRoom cRoom) {
+	public int add(ClassRoom cRoom) {
 		Transaction transaction = null;
         try {
             // start a transaction
@@ -24,14 +24,32 @@ public class ClassRoomServiceImpl{
             int affected =(Integer) session.save(cRoom);
             // commit transaction
             transaction.commit();
-            return affected > 0;
+            return affected;
       
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-            return false;
+            return 0;
+        }
+        
+	}
+	public void update(ClassRoom cRoom) {
+		Transaction transaction = null;
+        try {
+            // start a transaction
+            transaction = session.beginTransaction();
+            // save the student object
+             session.saveOrUpdate(cRoom);
+            // commit transaction
+            transaction.commit();
+      
+        } catch (Exception e) {
+            if (transaction != null) {
+                transaction.rollback();
+            }
+            e.printStackTrace();
         }
         
 	}
@@ -39,18 +57,9 @@ public class ClassRoomServiceImpl{
 		Transaction transaction = null;
         ClassRoom classRoom = null;
         try {
-            // start a transaction
+        	// start a transaction
             transaction = session.beginTransaction();
-            // get an user object
-            String hql = " FROM ClassRoom";
-            Query<ClassRoom> query =  session.createQuery(hql);
-
-            List<ClassRoom> classList =  query.getResultList();
-            
-            for(ClassRoom class1:classList) {
-            	System.out.println(class1);
-            	classRoom = class1;
-            }
+        	classRoom = (ClassRoom) session.get(ClassRoom.class, id);
             // commit transaction
             transaction.commit();
             return classRoom;
@@ -75,9 +84,9 @@ public class ClassRoomServiceImpl{
 
             classList =  query.getResultList();
             
-            for(ClassRoom class1:classList) {
-            	System.out.println(class1);
-            }
+//            for(ClassRoom class1:classList) {
+//            	System.out.println(class1);
+//            }
             
             // commit transaction
             transaction.commit();
@@ -92,6 +101,7 @@ public class ClassRoomServiceImpl{
 		
 	}
 	public void delete(int id) {
+		System.out.println("Delete Class with ID:" + id);
 
         Transaction transaction = null;
         try {
@@ -101,7 +111,7 @@ public class ClassRoomServiceImpl{
             // Delete a user object
             ClassRoom classRoom = session.get(ClassRoom.class, id);
             if (classRoom != null) {
-                session.delete(classRoom);
+                session.remove(classRoom);
                 System.out.println("ClassRoom is deleted");
             }
 
