@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.simplylern.model.ClassRoom;
 import com.simplylern.model.Teacher;
 import com.simplylern.utils.HibernateUtil;
 
@@ -42,15 +43,7 @@ public class TeacherServiceImpl{
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
-            String hql = " FROM Teacher";
-            Query<Teacher> query =  session.createQuery(hql);
-
-            List<Teacher> teacherList =  query.getResultList();
-            
-            for(Teacher teacher1:teacherList) {
-            	System.out.println(teacher1);
-            	teacher = teacher1;
-            }
+            teacher = (Teacher) session.get(Teacher.class, id);
             // commit transaction
             transaction.commit();
             return teacher;
@@ -74,10 +67,7 @@ public class TeacherServiceImpl{
             Query<Teacher> query =  session.createQuery(hql);
 
             teacherList =  query.getResultList();
-            
-            for(Teacher teacher1:teacherList) {
-            	System.out.println(teacher1);
-            }
+          
             
             // commit transaction
             transaction.commit();

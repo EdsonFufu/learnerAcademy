@@ -57,8 +57,8 @@
                 <td><%=cr.getName()%></td>
                 <td>
                 	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/class-room?action=edit&&id=<%=cr.getId()%>"><i class="fa fa-check"></i> Edit</a> 
-                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/class-room?action=delete&&id=<%=cr.getId()%>""><i class="fa fa-trash"></i> Delete</a>
-                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/class-room?action=assign-teacher"><i class="fa fa-tasks"></i> Assign Teacher</a>
+                	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/class-room?action=delete&&id=<%=cr.getId()%>"><i class="fa fa-trash"></i> Delete</a>
+                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/class-room?action=assign-teacher&&id=<%=cr.getId()%>"><i class="fa fa-tasks"></i> Assign Teacher</a>
                 </td>
             </tr>
          <%}%>

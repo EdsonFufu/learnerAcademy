@@ -16,6 +16,7 @@ import com.simplylern.model.Student;
 import com.simplylern.model.Subject;
 import com.simplylern.model.Teacher;
 import com.simplylern.model.User;
+import com.simplylern.model.TeacherClassRoom;
 
 
 /**
@@ -48,6 +49,9 @@ public class HibernateUtil {
     				configuration.addAnnotatedClass(Student.class);
     				configuration.addAnnotatedClass(Teacher.class);
     				configuration.addAnnotatedClass(Subject.class);
+    				configuration.addAnnotatedClass(TeacherClassRoom.class);
+    			
+    				
     				
     				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
     						.applySettings(configuration.getProperties()).build();

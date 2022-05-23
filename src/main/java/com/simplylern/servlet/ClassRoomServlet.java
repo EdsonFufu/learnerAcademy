@@ -14,7 +14,10 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 import com.simplylern.model.ClassRoom;
+import com.simplylern.model.TeacherClassRoom;
+import com.simplylern.service.TeacherClassRoomServiceImpl;
 import com.simplylern.service.ClassRoomServiceImpl;
+import com.simplylern.service.TeacherServiceImpl;
 import com.simplylern.service.UserServiceImpl;
 
 /**
@@ -45,13 +48,20 @@ public class ClassRoomServlet extends HttpServlet {
 				if (request.getParameter("action").equals("add")){ 
 					RequestDispatcher dispatcher = request.getRequestDispatcher("add-class-room.jsp");
 					dispatcher.forward(request, response);
-				}else if (request.getParameter("action").equals("edit") && request.getParameter("id") != null){
+				}else if ((request.getParameter("action").equals("edit") || request.getParameter("action").equals("assign-teacher")) && request.getParameter("id") != null){
 					String id = request.getParameter("id");
 					System.out.println("Display Form To Edit Item With ID:" + id);
 					ClassRoom cr = service.getById(Integer.parseInt(id));
 					System.out.println("ClassRoom:"+cr.toString());
 					request.setAttribute("item",cr);
-					request.getRequestDispatcher("add-class-room.jsp").forward(request, response);
+					if(request.getParameter("action").equals("edit")){
+						request.getRequestDispatcher("add-class-room.jsp").forward(request, response);
+					}else if(request.getParameter("action").equals("assign-teacher")) {
+						request.setAttribute("data", new TeacherServiceImpl().getAll());
+						request.getRequestDispatcher("teacher_class_room.jsp").forward(request, response);
+					}
+				}else if (request.getParameter("action").equals("assign-teacher")){ 
+					deleteItem(request, response);
 				}else if (request.getParameter("action").equals("delete")){ 
 					deleteItem(request, response);
 				}
@@ -75,6 +85,8 @@ public class ClassRoomServlet extends HttpServlet {
 	    	   this.addItem( request,  response);
 		   }else if(request.getParameter("action").equals("edit") && request.getParameter("id") != null) {
 			    updateItem(request, response);
+		   }else if(request.getParameter("action").equals("assign-teacher") && request.getParameter("class_id") != null && request.getParameter("teacher_id") != null) {
+			    assignTeacher(request, response);
 		   }else {
 			 request.getRequestDispatcher("add-class-room.jsp").forward(request, response);
 		   }
@@ -133,6 +145,32 @@ public class ClassRoomServlet extends HttpServlet {
 			request.setAttribute("data", classRoomServiceImpl.getAll());
 			request.setAttribute("title", "Class Room");
 			request.getRequestDispatcher("class-room.jsp").forward(request, response);
+		}catch(Exception e) {
+			System.out.println(e.getMessage());
+		}
+	}
+	
+	private void assignTeacher(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("Starting Assign Teacher");
+		try {
+			int classId = Integer.parseInt(request.getParameter("class_id"));
+			int teacherId = Integer.parseInt(request.getParameter("teacher_id"));
+			System.out.println("Starting Assign Teacher with ID:" + teacherId + " to class ID:" + classId);
+			
+			TeacherClassRoom tcr = new TeacherClassRoom(teacherId,classId);
+			System.out.println(tcr.toString());
+			
+			int affected = new TeacherClassRoomServiceImpl().add(tcr) ;
+			
+			if(affected > 0) {
+				request.setAttribute("message", "Teacher assigned Successfully");
+		    }else {
+		    	request.setAttribute("message", "Fail To Assign Teacher");
+		    }
+			request.setAttribute("data", new ClassRoomServiceImpl().getAll());
+			request.setAttribute("title", "Class Room");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("class-room.jsp");
+			dispatcher.forward(request, response);
 		}catch(Exception e) {
 			System.out.println(e.getMessage());
 		}
