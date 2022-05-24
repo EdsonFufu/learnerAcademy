@@ -27,6 +27,14 @@
       </ul>
     </nav>
     <section class="content">
+      <div class="row">
+        <% if(request.getAttribute("message") != null){ %>
+	        <div class="alert alert-info alert-dismissible fade show" role="alert">
+			  <strong></strong><%=request.getAttribute("message")%>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		 <% } %>
+      </div>
       <header>
         <h3><%="Teachers" %></h3>
         <form action="<%=request.getContextPath()%>/teacher?action=add" method="post">
@@ -49,7 +57,8 @@
                 <td>
                 	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/teacher?action=edit&&id=<%=teacher.getId()%>"><i class="fa fa-check"></i> Edit</a> 
                 	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/teacher?action=delete&&id=<%=teacher.getId()%>"><i class="fa fa-trash"></i> Delete</a>
-                </td>            
+                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/teacher?action=assign-subjet&&id=<%=teacher.getId()%>"><i class="fa fa-tasks"></i> Assign Subject</a>
+                </td>           
              </tr>
          <%}%>
 	  </tbody>

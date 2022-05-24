@@ -58,7 +58,7 @@ public class TeacherServiceImpl{
 	}
 	public List<Teacher> getAll(){
 		Transaction transaction = null;
-		 List<Teacher> teacherList  = null;
+		 List<Teacher> classList  = null;
         try {
             // start a transaction
             transaction = session.beginTransaction();
@@ -66,12 +66,15 @@ public class TeacherServiceImpl{
             String hql = " FROM Teacher";
             Query<Teacher> query =  session.createQuery(hql);
 
-            teacherList =  query.getResultList();
-          
+            classList =  query.getResultList();
+            
+//            for(ClassRoom class1:classList) {
+//            	System.out.println(class1);
+//            }
             
             // commit transaction
             transaction.commit();
-            return teacherList;
+            return classList;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

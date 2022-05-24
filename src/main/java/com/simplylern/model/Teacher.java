@@ -54,6 +54,11 @@ public class Teacher {
 	      , inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
 	  private Set<ClassRoom> classRooms;
 	
+	@ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+	  @JoinTable(name = "SUBJECT_TEACHER", joinColumns = {@JoinColumn(referencedColumnName = "id")}
+	      , inverseJoinColumns = {@JoinColumn(referencedColumnName = "id")})
+	  private Set<Subject> subjects;
+	
 	@Override
 	public String toString() {
 		return "Teacher [id=" + id + ", name=" + name + "]";

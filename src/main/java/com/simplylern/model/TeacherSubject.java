@@ -10,24 +10,24 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "CLASS_ROOM_TEACHER")
-public class TeacherClassRoom  implements Serializable{
+@Table(name = "SUBJECT_TEACHER")
+public class TeacherSubject  implements Serializable{
 
 	@Id
 	@Column
 	private int teachers_id;
 	@Id
 	@Column
-	private int classrooms_id;
+	private int subjects_id;
 
-	public TeacherClassRoom() {
+	public TeacherSubject() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public TeacherClassRoom(int tid, int cid) {
+	public TeacherSubject(int tid, int sid) {
 		super();
 		this.teachers_id = tid;
-		this.classrooms_id = cid;
+		this.subjects_id = sid;
 	}
 	public int getTeachers_id() {
 		return teachers_id;
@@ -35,21 +35,16 @@ public class TeacherClassRoom  implements Serializable{
 	public void setTeachers_id(int teachers_id) {
 		this.teachers_id = teachers_id;
 	}
-	public int getClassrooms_id() {
-		return classrooms_id;
+	public int getSubjects_id() {
+		return subjects_id;
 	}
-	public void setClassrooms_id(int classrooms_id) {
-		this.classrooms_id = classrooms_id;
+	public void setSubjects_id(int subjects_id) {
+		this.subjects_id = subjects_id;
 	}
 	@Override
 	public String toString() {
-		return "TeacherClassRoom [teachers_id=" + teachers_id + ", classrooms_id=" + classrooms_id + "]";
+		return "TeacherSubject [teachers_id=" + teachers_id + ", subjects_id=" + subjects_id + "]";
 	}
-	
-	
-
-	
-
 
 
 }

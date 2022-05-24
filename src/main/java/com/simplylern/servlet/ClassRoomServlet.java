@@ -17,6 +17,7 @@ import com.simplylern.model.ClassRoom;
 import com.simplylern.model.TeacherClassRoom;
 import com.simplylern.service.TeacherClassRoomServiceImpl;
 import com.simplylern.service.ClassRoomServiceImpl;
+import com.simplylern.service.SubjectServiceImpl;
 import com.simplylern.service.TeacherServiceImpl;
 import com.simplylern.service.UserServiceImpl;
 
@@ -57,11 +58,12 @@ public class ClassRoomServlet extends HttpServlet {
 					if(request.getParameter("action").equals("edit")){
 						request.getRequestDispatcher("add-class-room.jsp").forward(request, response);
 					}else if(request.getParameter("action").equals("assign-teacher")) {
-						request.setAttribute("data", new TeacherServiceImpl().getAll());
+						request.setAttribute("teachers", new TeacherServiceImpl().getAll());
 						request.getRequestDispatcher("teacher_class_room.jsp").forward(request, response);
+					}else if(request.getParameter("action").equals("assign-subject")) {
+						request.setAttribute("subjects", new SubjectServiceImpl().getAll());
+						request.getRequestDispatcher("subject_teacher.jsp").forward(request, response);
 					}
-				}else if (request.getParameter("action").equals("assign-teacher")){ 
-					deleteItem(request, response);
 				}else if (request.getParameter("action").equals("delete")){ 
 					deleteItem(request, response);
 				}
@@ -160,12 +162,13 @@ public class ClassRoomServlet extends HttpServlet {
 			TeacherClassRoom tcr = new TeacherClassRoom(teacherId,classId);
 			System.out.println(tcr.toString());
 			
-			int affected = new TeacherClassRoomServiceImpl().add(tcr) ;
+			int affected = new TeacherClassRoomServiceImpl().add(tcr);
+			
 			
 			if(affected > 0) {
-				request.setAttribute("message", "Teacher assigned Successfully");
+				request.setAttribute("message", "Teacher with ID:" + teacherId + " assigned to class ID:" + classId +" successfully");
 		    }else {
-		    	request.setAttribute("message", "Fail To Assign Teacher");
+		    	request.setAttribute("message", "Failed to Assign Teacher with ID:" + teacherId + " to class ID:" + classId );
 		    }
 			request.setAttribute("data", new ClassRoomServiceImpl().getAll());
 			request.setAttribute("title", "Class Room");

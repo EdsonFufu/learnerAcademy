@@ -17,6 +17,7 @@ import com.simplylern.model.Subject;
 import com.simplylern.model.Teacher;
 import com.simplylern.model.User;
 import com.simplylern.model.TeacherClassRoom;
+import com.simplylern.model.TeacherSubject;
 
 
 /**
@@ -50,6 +51,7 @@ public class HibernateUtil {
     				configuration.addAnnotatedClass(Teacher.class);
     				configuration.addAnnotatedClass(Subject.class);
     				configuration.addAnnotatedClass(TeacherClassRoom.class);
+    				configuration.addAnnotatedClass(TeacherSubject.class);
     			
     				
     				
