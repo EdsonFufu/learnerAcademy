@@ -7,6 +7,7 @@ import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import com.simplylern.model.Subject;
+import com.simplylern.model.Teacher;
 import com.simplylern.utils.HibernateUtil;
 
 public class SubjectServiceImpl{
@@ -15,13 +16,13 @@ public class SubjectServiceImpl{
 		super();
 		this.session = HibernateUtil.getSessionFactory().openSession();
 	}
-	public boolean add(Subject cRoom) {
+	public boolean add(Subject sub) {
 		Transaction transaction = null;
         try {
             // start a transaction
             transaction = session.beginTransaction();
             // save the student object
-            int affected =(Integer) session.save(cRoom);
+            int affected =(Integer) session.save(sub);
             // commit transaction
             transaction.commit();
             return affected > 0;
@@ -37,23 +38,15 @@ public class SubjectServiceImpl{
 	}
 	public Subject getById(int id) {
 		Transaction transaction = null;
-        Subject subject = null;
+		Subject sub = null;
         try {
             // start a transaction
             transaction = session.beginTransaction();
             // get an user object
-            String hql = " FROM Subject";
-            Query<Subject> query =  session.createQuery(hql);
-
-            List<Subject> subjectList =  query.getResultList();
-            
-            for(Subject subj:subjectList) {
-            	System.out.println(subj);
-            	subject = subj;
-            }
+            sub = (Subject) session.get(Subject.class, id);
             // commit transaction
             transaction.commit();
-            return subject;
+            return sub;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

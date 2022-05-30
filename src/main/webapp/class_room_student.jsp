@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@page import="com.simplylern.model.ClassRoom"%>
-<%@page import="com.simplylern.model.Teacher"%>
-<%@page import="com.simplylern.model.Subject"%>
+<%@page import="com.simplylern.model.Student"%>
 <%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
@@ -26,43 +25,42 @@
       <ul>
         <li class="first-crumb"><a href="<%=request.getContextPath()%>/">Home</a></li>
      <!--    <li><a href="#">Personal Work</a></li> -->
-        <li class="last-crumb">Assign Teacher </li>
+        <li class="last-crumb">Assign Class Room </li>
       </ul>
     </nav>
     <section class="content">
       <header>
-        <h4>Assign Teacher To a Class</h4>
+        <h4>Assign Class Room To a Student</h4>
       </header>
       <%!
-      	ClassRoom cr = new ClassRoom();
+      	Student st = new Student();
         String action = "add";
         String value = "Add";
         String name = "";
-        int crId = 0;
+        int stId = 0;
       %>
       <% 
 	   if(request.getAttribute("item") != null) {
-		    cr = (ClassRoom)request.getAttribute("item");
-		    action = "assign-teacher&&id=" + cr.getId();
-		    value = "Assign Teacher  Class :" + cr.getName();
-		    name = cr.getName();
-		    crId = cr.getId();
+		    st = (Student)request.getAttribute("item");
+		    action = "assign-class-room&&id=" + st.getId();
+		    value = "Assign ClassRoom to  [" +st.getName() + "]";
+		    name = st.getName();
+		    stId = st.getId();
 	   } 
 	   %>
-       <form style="" action="<%=request.getContextPath()%>/class-room?action=<%=action%>" method="post">
+       <form style="" action="<%=request.getContextPath()%>/student?action=<%=action%>" method="post">
 	  <div class="mb-3 col-md-6">
 
-	    <label for="exampleInputEmail1" class="form-label">Class Name</label>
-	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
+	    <label for="exampleInputEmail1" class="form-label">Student Name</label>
 	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" readonly required value="<%=name%>"/>
-	     <input type="hidden" class="form-control" id="class_id" name = "class_id" aria-describedby="nameHelp" required value="<%=cr.getId()%>"/>
+	     <input type="hidden" class="form-control" id="student_id" name = "student_id" aria-describedby="nameHelp" required value="<%=st.getId()%>"/>
 	     <div id="emailHelp" class="form-text error"></div>
 	     
 	     
-	      <label for="exampleInputEmail1" class="form-label">Teacher</label>
-	     <select class="form-control" id="teacher_id" name = "teacher_id" aria-describedby="nameHelp">
-	     <% for(Teacher t:(ArrayList<Teacher>) request.getAttribute("teachers")){ %>
-	          <option  value="<%=t.getId()%>"><%=t.getId() + ":" +t.getName()%></a> 
+	      <label for="exampleInputEmail1" class="form-label">ClassRoom</label>
+	     <select class="form-control" id="class_id" name = "class_id" aria-describedby="nameHelp">
+	     <% for(ClassRoom cr:(ArrayList<ClassRoom>) request.getAttribute("classRooms")){ %>
+	          <option  value="<%=cr.getId()%>"><%= "Class " +cr.getName()%></a> 
 	      <%}%>
 	     </select>
 	     <div id="teacherHelp" class="form-text error"></div>

@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.simplylern.model.Subject"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,16 +30,29 @@
       <header>
         <h3>Add New Subject</h3>
       </header>
-       <form style="" action="<%=request.getContextPath()%>/subject" method="post">
+       <%!
+     	Subject sub = new Subject();
+       String action = "add";
+       String value = "Add";
+       String name = "";
+      %>
+      <% 
+	   if(request.getAttribute("item") != null) {
+		    sub = (Subject)request.getAttribute("item");
+		    action = "edit&&id=" + sub.getId();
+		    value = "Update Item with ID:" + sub.getId();
+		    name = sub.getName();
+	   } 
+	   %>
+       <form style="" action="<%=request.getContextPath()%>/subject?action=<%=action%>" method="post">
 	  <div Subject="mb-3">
 	    <label for="exampleInputEmail1" class="form-label">Subject Name</label>
-	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
-	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" required>
+	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" required value="<%=name%>">
 	     <div id="emailHelp" class="form-text error"></div>
 	  </div>
 	 
 
-	  <button type="submit" class="btn btn-primary">Add Subject</button>
+	  <button type="submit" class="btn btn-primary"><%=value%></button>
 	</form>
     </section>
    </main>

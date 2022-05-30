@@ -6,6 +6,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
+import com.simplylern.model.ClassRoom;
 import com.simplylern.model.Student;
 import com.simplylern.utils.HibernateUtil;
 
@@ -15,7 +16,7 @@ public class StudentServiceImpl{
 		super();
 		this.session = HibernateUtil.getSessionFactory().openSession();
 	}
-	public boolean add(Student student) {
+	public int add(Student student) {
 		Transaction transaction = null;
         try {
             // start a transaction
@@ -24,48 +25,58 @@ public class StudentServiceImpl{
             int affected =(Integer) session.save(student);
             // commit transaction
             transaction.commit();
-            return affected > 0;
+            return affected;
       
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
-            return false;
+            return 0;
         }
         
 	}
-	public Student getById(int id) {
+	public void update(Student st) {
 		Transaction transaction = null;
-        Student sdt = null;
         try {
             // start a transaction
             transaction = session.beginTransaction();
-            // get an user object
-            String hql = " FROM Student";
-            Query<Student> query =  session.createQuery(hql);
-
-            List<Student> classList =  query.getResultList();
-            
-            for(Student student:classList) {
-            	System.out.println(student);
-            	sdt = student;
-            }
+            // save the student object
+             session.saveOrUpdate(st);
             // commit transaction
             transaction.commit();
-            return sdt;
+      
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();
             }
             e.printStackTrace();
         }
-        return null;
+        
+	}
+
+	public Student getById(int id) {
+		Transaction transaction = null;
+		Student student = null;
+	    try {
+	    	// start a transaction
+	        transaction = session.beginTransaction();
+	    	student = (Student) session.get(Student.class, id);
+	        // commit transaction
+	        transaction.commit();
+	        return student;
+	    } catch (Exception e) {
+	        if (transaction != null) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace();
+	    }
+	    return null;
 		
 	}
 	public List<Student> getAll(){
 		Transaction transaction = null;
-		 List<Student> studentList  = null;
+		 List<Student> stList  = null;
         try {
             // start a transaction
             transaction = session.beginTransaction();
@@ -73,15 +84,10 @@ public class StudentServiceImpl{
             String hql = " FROM Student";
             Query<Student> query =  session.createQuery(hql);
 
-            studentList =  query.getResultList();
+            stList =  query.getResultList();
             
-            for(Student student:studentList) {
-            	System.out.println(student);
-            }
-            
-            // commit transaction
             transaction.commit();
-            return studentList;
+            return stList;
         } catch (Exception e) {
             if (transaction != null) {
                 transaction.rollback();

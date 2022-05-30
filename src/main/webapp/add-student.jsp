@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="com.simplylern.model.Student"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,25 +27,41 @@
       </ul>
     </nav>
     <section class="content">
+     <%!
+       Student  st = new Student();
+       String action = "add";
+       String value = "Add";
+       String name = "";
+       String sid = "";
+      %>
+      <% 
+	   if(request.getAttribute("item") != null) {
+		    st = (Student)request.getAttribute("item");
+		    action = "edit&&id=" + st.getId();
+		    value = "Update Item with ID:" + st.getId();
+		    name = st.getName();
+		    sid = st.getStudentId();
+	   } 
+	   %>
       <header>
         <h3>Add New Student</h3>
       </header>
-       <form style="" action="<%=request.getContextPath()%>/student" method="post">
+       <form style="" action="<%=request.getContextPath()%>/student?<%=action%>" method="post">
 	  <div class="col-md-12">
 	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
 	     <label for="exampleInputEmail1" class="form-label">Student Id</label>
-	     <input type="text" class="form-control" id="studentId" name = "studentId" aria-describedby="nameHelp" required>
+	     <input type="text" class="form-control" id="studentId" name = "studentId" aria-describedby="nameHelp" required value = "<%=sid%>">
 	     <div id="emailHelp" class="form-text error"></div>
 	  </div>
 	  	  <div class="col-md-12">
 	     <input type="hidden" class="form-control" id="action" name="action" aria-describedby="operationHelp" value="add" required>
 	     <label for="exampleInputEmail1" class="form-label">Student Name</label>
-	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" required>
+	     <input type="text" class="form-control" id="name" name = "name" aria-describedby="nameHelp" required value = "<%=name%>">
 	     <div id="emailHelp" class="form-text error"></div>
 	  </div>
 	 
 
-	  <button type="submit" class="btn btn-primary">Add Student</button>
+	  <button type="submit" class="btn btn-primary"><%=value%></button>
 	</form>
     </section>
    </main>

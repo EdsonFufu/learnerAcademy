@@ -24,7 +24,6 @@ public class Subject {
 			cascade = {CascadeType.PERSIST, CascadeType.MERGE})
 	private Set<Teacher> teachers;
 
-
 	public Subject() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -49,11 +48,4 @@ public class Subject {
 	public String toString() {
 		return "Subject [id=" + id + ", name=" + name + "]";
 	}
-	
-	
-
-	
-
-
-
 }

@@ -1,5 +1,6 @@
 package com.simplylern.model;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -17,6 +18,9 @@ public class Student {
 	private String studentId;
 	@Column
 	private String name;
+	
+	@Column(name = "classId")
+	private String classId;
 
 
 	public Student() {
@@ -46,15 +50,16 @@ public class Student {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String getClassId() {
+		return classId;
+	}
+	public void setClassId(String classId) {
+		this.classId = classId;
+	}
 	@Override
 	public String toString() {
-		return "Student [id=" + id + ", studentId=" + studentId + ", name=" + name + "]";
+		return "Student [id=" + id + ", studentId=" + studentId + ", name=" + name + ", classId=" + classId + "]";
 	}
-	
-	
-
-	
-
-
 
 }

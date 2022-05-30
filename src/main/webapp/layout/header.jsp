@@ -57,6 +57,7 @@
 	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/student" class="nav-link">Students</a></li>
 	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/teacher" class="nav-link">Teachers</a></li>
 	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/subject" class="nav-link">Subjects</a></li>
+	        	<li class="nav-item"><a href="<%=request.getContextPath()%>/student-master-list" class="nav-link">Student Master List</a></li>
 	       
 	        </ul>
 	      </div>

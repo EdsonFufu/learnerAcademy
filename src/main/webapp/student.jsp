@@ -22,11 +22,18 @@
     <nav class="breadcrumbs">
       <ul>
         <li class="first-crumb"><a href="<%=request.getContextPath()%>/">Home</a></li>
-     <!--    <li><a href="#">Personal Work</a></li> -->
         <li class="last-crumb"><%="Students" %></li>
       </ul>
     </nav>
     <section class="content">
+      <div class="row">
+        <% if(request.getAttribute("message") != null){ %>
+	        <div class="alert alert-info alert-dismissible fade show" role="alert">
+			  <strong></strong><%=request.getAttribute("message")%>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		 <% } %>
+      </div>
       <header>
         <h3><%="Students" %></h3>
         <form action="<%=request.getContextPath()%>/student?action=add" method="post">
@@ -51,7 +58,7 @@
                 <td>
                 	<a class="btn btn-outline-info" href="<%=request.getContextPath()%>/student?action=edit&&id=<%=std.getId()%>"><i class="fa fa-check"></i> Edit</a> 
                 	<a class="btn btn-outline-danger" href="<%=request.getContextPath()%>/student?action=delete&&id=<%=std.getId()%>"><i class="fa fa-trash"></i> Delete</a>
-                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/student?action=assign-class&&id=<%=std.getId()%>"><i class="fa fa-tasks"></i> Assign Class</a>
+                	<a class="btn btn-outline-success" href="<%=request.getContextPath()%>/student?action=assign-class-room&&id=<%=std.getId()%>"><i class="fa fa-tasks"></i> Assign Class</a>
                 </td>
             </tr>
          <%}%>

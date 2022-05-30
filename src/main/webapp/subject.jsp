@@ -27,6 +27,14 @@
       </ul>
     </nav>
     <section class="content">
+          <div class="row">
+        <% if(request.getAttribute("message") != null){ %>
+	        <div class="alert alert-info alert-dismissible fade show" role="alert">
+			  <strong></strong><%=request.getAttribute("message")%>
+			  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+			</div>
+		 <% } %>
+      </div>
       <header>
         <h3><%="Subjects" %></h3>
         <form action="<%=request.getContextPath()%>/subject?action=add" method="post">
