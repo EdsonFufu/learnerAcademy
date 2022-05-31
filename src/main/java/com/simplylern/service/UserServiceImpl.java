@@ -40,28 +40,15 @@ public class UserServiceImpl {
 	}
 	public boolean validate(String username, String password) {
 
-        Transaction transaction = null;
-        User user = null;
         try {
-            // start a transaction
-            transaction = session.beginTransaction();
-            // get an user object
-            String hql = " FROM User";
-            Query<User> query =  session.createQuery(hql);
-
-            List<User> userList =  query.getResultList();
-            for(User user1:userList) {
-            	System.out.println(user1);
-            	if(user1.getUsername().equals(username) && user1.getPassword().equals(password)) {
-            		return true;
-            	}
-            }
-            // commit transaction
-            transaction.commit();
+        	System.out.println("Start validating username:" + username + " and passord:"+password);
+            Query q = session.createQuery("select count(s) from User s where username = :un AND password = :pw");
+            q.setParameter("un",username);
+            q.setParameter("pw",password);
+            Long count = (long)q.getSingleResult();
+            System.out.println("Number Of Rows :" + count);
+            return count == 1;
         } catch (Exception e) {
-            if (transaction != null) {
-                transaction.rollback();
-            }
             e.printStackTrace();
         }
         return false;

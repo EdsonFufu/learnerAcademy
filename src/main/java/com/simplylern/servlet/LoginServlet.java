@@ -36,7 +36,7 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.getRequestDispatcher("/index.jsp").forward(request, response);
+		request.getRequestDispatcher("login.jsp").forward(request, response);
 	}
 
 	/**
@@ -48,13 +48,13 @@ public class LoginServlet extends HttpServlet {
 		String un = request.getParameter("username");
 		String pw = request.getParameter("password");
 		
-		if(!userServiceImpl.validate(un, pw)) {
-			request.setAttribute("message", "Invalid Username or Password");
-			request.getRequestDispatcher("/login").forward(request, response);
-		}else {
+		if(userServiceImpl.validate(un, pw)) {
 			 HttpSession session=request.getSession();  
 		     session.setAttribute("un",un); 
-			 response.sendRedirect("/class-room");
+			 response.sendRedirect("home.jsp");
+		}else {
+			request.setAttribute("message", "Invalid Username or Password");
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 		}
 		
 		
