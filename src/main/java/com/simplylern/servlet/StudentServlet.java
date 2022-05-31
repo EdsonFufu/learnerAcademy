@@ -39,7 +39,17 @@ public class StudentServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		  HttpSession session=request.getSession(false); 
+		  if(session == null) {
+	    		request.setAttribute("message", "You have not Logged in");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+		  }
+		  String un = (String)session.getAttribute("un");
+	      if("".equals(un) || un == null) {
+	    		request.setAttribute("message", "You have not Logged in");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+	      }
+	      System.out.println("Hello "+un);  
 		try {
 			if(request.getParameter("action") != null) {
 				if (request.getParameter("action").equals("add")){ 
@@ -61,6 +71,8 @@ public class StudentServlet extends HttpServlet {
 					}
 				}else if (request.getParameter("action").equals("delete")){ 
 					deleteItem(request, response);
+				}else if (request.getParameter("action").equals("student-master-list")){ 
+					studentMasterList(request, response);
 				}
 			}else{
 				this.listStudent(request, response);
@@ -98,6 +110,14 @@ public class StudentServlet extends HttpServlet {
 		request.setAttribute("title", "Student");
 		
 		 RequestDispatcher dispatcher = request.getRequestDispatcher("student.jsp");
+	     dispatcher.include(request, response);
+	}
+	private void studentMasterList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException{
+		System.out.println("Getting student master List...");
+		request.setAttribute("data", new StudentServiceImpl().getStudentMasterList());
+		request.setAttribute("title", "StudentMasterList");
+		
+		 RequestDispatcher dispatcher = request.getRequestDispatcher("student_master_list.jsp");
 	     dispatcher.include(request, response);
 	}
 	private void deleteItem(HttpServletRequest request, HttpServletResponse response) {

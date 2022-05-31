@@ -1,5 +1,6 @@
 package com.simplylern.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,6 +9,7 @@ import org.hibernate.query.Query;
 
 import com.simplylern.model.ClassRoom;
 import com.simplylern.model.Student;
+import com.simplylern.model.StudentList;
 import com.simplylern.utils.HibernateUtil;
 
 public class StudentServiceImpl{
@@ -95,6 +97,35 @@ public class StudentServiceImpl{
             e.printStackTrace();
         }
         return null;
+		
+	}
+	public List<StudentList> getStudentMasterList(){
+		 List<StudentList> studentMasterList  = new ArrayList<>();
+        try {
+            String hql = " FROM Student";
+            Query<Student> query =  session.createQuery(hql);
+
+            List<Student> studentLst =  query.getResultList();
+            if(studentLst.size() > 0) {
+            	for(Student s:studentLst) {
+            		if(s.getClassId() != null) {
+            		ClassRoom cr = new ClassRoomServiceImpl().getById(Integer.parseInt(s.getClassId()));
+            		if(cr != null) {
+            			studentMasterList.add(new StudentList(s.getStudentId(),s.getName(),cr.getName()));
+            		}else {
+            			studentMasterList.add(new StudentList(s.getStudentId(),s.getName(),"Not Assigned"));
+            		}
+            		}else {
+            			studentMasterList.add(new StudentList(s.getStudentId(),s.getName(),"Not Assigned"));
+            		}
+            	}
+            	
+            }
+            
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return studentMasterList;
 		
 	}
 	public void delete(int id) {

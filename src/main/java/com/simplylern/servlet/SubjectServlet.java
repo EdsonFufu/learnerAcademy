@@ -33,7 +33,17 @@ public class SubjectServlet extends HttpServlet {
     }
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		  HttpSession session=request.getSession(false); 
+		  if(session == null) {
+	    		request.setAttribute("message", "You have not Logged in");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+		  }
+		  String un = (String)session.getAttribute("un");
+	      if("".equals(un) || un == null) {
+	    		request.setAttribute("message", "You have not Logged in");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+	      }
+	      System.out.println("Hello "+un);  
 		try {
 			if(request.getParameter("action") != null) {
 				if (request.getParameter("action").equals("add")){ 

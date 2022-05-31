@@ -34,6 +34,17 @@ public class HomeServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		  HttpSession session=request.getSession(false); 
+		  if(session == null) {
+	    		request.setAttribute("message", "You have not Logged in");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+		  }
+		  String un = (String)session.getAttribute("un");
+	      if("".equals(un) || un == null) {
+	    		request.setAttribute("message", "You have not Logged in");
+				request.getRequestDispatcher("index.jsp").forward(request, response);
+	      }
+	      System.out.println("Hello "+un);  
 		request.setAttribute("message", "Welcome Learners Academy");
 		request.setAttribute("title", "Welcome Learners Academy");
 		request.getRequestDispatcher("/home").forward(request, response);
